@@ -1,0 +1,87 @@
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.game-title {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 2.2rem;
+  color: #2d2d2d;
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.timer-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.timer-icon {
+  font-size: 1.3rem;
+}
+
+.timer-text {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1rem;
+  color: #c23a22;
+  margin: 4px 0 0;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.header-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.header-btn:hover {
+  transform: scale(1.1);
+}
+
+.pause-btn {
+  background: linear-gradient(135deg, #8e44ad 0%, #6c3483 100%);
+  color: #fff;
+}
+
+.help-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  color: #fff;
+  font-weight: 900;
+  font-family: 'Fredoka One', sans-serif;
+}

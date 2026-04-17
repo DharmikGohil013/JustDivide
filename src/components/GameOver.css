@@ -1,0 +1,113 @@
+.gameover-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.gameover-modal {
+  background: linear-gradient(180deg, #fff8e7 0%, #ffe0b2 100%);
+  border-radius: 24px;
+  padding: 40px 50px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  border: 4px solid #f5c842;
+  animation: modalPop 0.4s ease;
+  max-width: 90vw;
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.gameover-title {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 2.4rem;
+  color: #c23a22;
+  margin: 0 0 24px;
+  letter-spacing: 3px;
+}
+
+.gameover-scores {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.gameover-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gameover-label {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.gameover-value {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 2.8rem;
+  color: #2d2d2d;
+  font-weight: 900;
+}
+
+.gameover-value.best {
+  color: #f5c842;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.gameover-restart {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 40px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+  letter-spacing: 1px;
+}
+
+.gameover-restart:hover {
+  transform: scale(1.06);
+}
+
+.gameover-home {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1rem;
+  background: transparent;
+  color: #888;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 10px 30px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: transform 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  letter-spacing: 1px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gameover-home:hover {
+  transform: scale(1.06);
+  color: #555;
+  border-color: #999;
+}

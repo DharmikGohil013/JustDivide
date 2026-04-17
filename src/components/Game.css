@@ -1,0 +1,365 @@
+.game-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.game-bg-desktop {
+  display: block;
+}
+.game-bg-landscape {
+  display: none;
+}
+.game-bg-portrait {
+  display: none;
+}
+
+.game-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 30px 0;
+  box-sizing: border-box;
+}
+
+.game-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.game-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 460px;
+  flex-shrink: 0;
+}
+
+.cat-badges-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  margin-bottom: -24px;
+  z-index: 5;
+}
+
+.cat-image {
+  width: 240px;
+  height: auto;
+  z-index: 6;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  margin: 0 -20px;
+}
+
+.badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 50px;
+  z-index: 7;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.badge-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.badge-text {
+  position: relative;
+  z-index: 2;
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.35);
+  text-transform: uppercase;
+}
+
+.bottom-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px;
+  z-index: 10;
+}
+
+.undo-btn,
+.restart-btn {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.undo-btn {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: #fff;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+  color: #fff;
+}
+
+.undo-btn:hover,
+.restart-btn:hover {
+  transform: scale(1.06);
+}
+
+.hints-indicator {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.9rem;
+  color: #f39c12;
+  letter-spacing: 1px;
+}
+
+.touch-ghost {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 200, 0, 0.85);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.touch-ghost-number {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1.6rem;
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.pause-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  cursor: pointer;
+}
+
+.pause-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.pause-modal h2 {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 2rem;
+  color: #8e44ad;
+  margin: 0 0 8px;
+  letter-spacing: 3px;
+}
+
+.pause-modal p {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1rem;
+  color: #666;
+}
+
+
+@media (max-width: 1100px) {
+  .game-center {
+    width: 400px;
+  }
+  .cat-image {
+    width: 200px;
+  }
+  .badge {
+    width: 130px;
+    height: 42px;
+  }
+  .badge-text {
+    font-size: 0.95rem;
+  }
+  .game-title {
+    font-size: 1.8rem;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .game-bg-desktop { display: none; }
+  .game-bg-landscape { display: block; }
+
+  .game-content {
+    padding: 8px 16px 0;
+  }
+  .game-main {
+    gap: 20px;
+  }
+  .game-center {
+    width: 360px;
+  }
+  .cat-image {
+    width: 160px;
+  }
+  .badge {
+    width: 110px;
+    height: 36px;
+  }
+  .badge-text {
+    font-size: 0.85rem;
+  }
+  .side-panel {
+    width: 120px;
+  }
+  .tile-number {
+    font-size: 1.4rem;
+  }
+}
+
+
+@media (max-width: 650px) {
+  .game-bg-desktop { display: none; }
+  .game-bg-landscape { display: none; }
+  .game-bg-portrait { display: block; }
+
+  .game-content {
+    padding: 4px 8px 0;
+  }
+  .game-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .game-center {
+    width: 320px;
+  }
+  .cat-image {
+    width: 130px;
+    margin: 0 -10px;
+  }
+  .badge {
+    width: 95px;
+    height: 32px;
+  }
+  .badge-text {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+  .cat-badges-row {
+    margin-bottom: -14px;
+  }
+  .side-panel {
+    flex-direction: row;
+    width: 100%;
+    max-width: 340px;
+    gap: 8px;
+  }
+  .keep-section,
+  .trash-section {
+    padding: 8px;
+  }
+  .keep-slot,
+  .trash-slot {
+    width: 50px;
+    height: 50px;
+  }
+  .queue-tile {
+    width: 42px;
+    height: 42px;
+  }
+  .queue-active {
+    width: 48px;
+    height: 48px;
+  }
+  .game-title {
+    font-size: 1.4rem;
+  }
+  .subtitle {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+  .tile-number {
+    font-size: 1.1rem;
+  }
+  .grid-container {
+    padding: 8px;
+    border-width: 3px;
+  }
+  .grid-board {
+    gap: 5px;
+  }
+  .bottom-controls {
+    padding: 6px;
+  }
+  .undo-btn, .restart-btn {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+}
+
+
+@media (max-width: 380px) {
+  .game-center {
+    width: 280px;
+  }
+  .cat-image {
+    width: 100px;
+  }
+  .badge {
+    width: 80px;
+    height: 28px;
+  }
+  .badge-text {
+    font-size: 0.65rem;
+  }
+}

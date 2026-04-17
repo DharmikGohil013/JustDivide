@@ -1,0 +1,220 @@
+.start-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.start-bg-desktop { display: block; }
+.start-bg-landscape { display: none; }
+.start-bg-portrait { display: none; }
+
+@media (max-width: 900px) {
+  .start-bg-desktop { display: none; }
+  .start-bg-landscape { display: block; }
+}
+@media (max-width: 650px) {
+  .start-bg-desktop { display: none; }
+  .start-bg-landscape { display: none; }
+  .start-bg-portrait { display: block; }
+}
+
+.start-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 520px;
+  width: 90%;
+  animation: startFadeIn 0.8s ease;
+}
+
+@keyframes startFadeIn {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.start-cat {
+  width: 260px;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+  animation: catBounce 2.5s ease-in-out infinite;
+}
+
+@keyframes catBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.start-title {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 3.6rem;
+  color: #2d2d2d;
+  margin: 0;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.5);
+}
+
+.start-subtitle {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1.6rem;
+  color: #8e44ad;
+  margin: -8px 0 0;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.start-desc {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1.05rem;
+  color: #c0392b;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.start-save-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.save-badge {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 14px;
+  padding: 12px 24px;
+  text-align: center;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(245, 200, 66, 0.5);
+}
+
+.save-label {
+  display: block;
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.save-detail {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 1.15rem;
+  color: #2d2d2d;
+  letter-spacing: 1px;
+}
+
+.start-btn {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50px;
+  padding: 18px 60px;
+  cursor: pointer;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+}
+
+.start-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.start-btn:active {
+  transform: scale(0.97);
+}
+
+.play-btn {
+  background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.continue-btn {
+  background: linear-gradient(135deg, #3498db 0%, #2471a3 100%);
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 14px 40px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.start-keys {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.start-keys span {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.8rem;
+  color: #777;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 4px 10px;
+  letter-spacing: 1px;
+}
+
+.start-keys b {
+  color: #8e44ad;
+  margin-right: 3px;
+}
+
+@media (max-width: 650px) {
+  .start-cat {
+    width: 180px;
+  }
+  .start-title {
+    font-size: 2.4rem;
+    letter-spacing: 4px;
+  }
+  .start-subtitle {
+    font-size: 1.2rem;
+  }
+  .start-desc {
+    font-size: 0.85rem;
+  }
+  .start-btn {
+    font-size: 1.2rem;
+    padding: 14px 44px;
+  }
+  .continue-btn {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .start-cat {
+    width: 140px;
+  }
+  .start-title {
+    font-size: 2rem;
+  }
+}
