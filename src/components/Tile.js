@@ -17,6 +17,8 @@ export default function Tile({ value, draggable, onDragStart, size = 'normal' })
     if (onDragStart) onDragStart(e);
   };
 
+  const sizeClass = value >= 1000 ? 'tile-number-xlarge' : value >= 100 ? 'tile-number-large' : '';
+
   return (
     <div
       className={`tile tile-${size} ${draggable ? 'tile-draggable' : ''}`}
@@ -25,7 +27,7 @@ export default function Tile({ value, draggable, onDragStart, size = 'normal' })
       onTouchStart={handleTouchStart}
     >
       <img src={getTileImage(value)} alt="" className="tile-bg" draggable={false} />
-      <span className="tile-number">{value}</span>
+      <span className={`tile-number ${sizeClass}`}>{value}</span>
     </div>
   );
 }

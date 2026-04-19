@@ -2,16 +2,30 @@ import React from 'react';
 import Tile from './Tile';
 import './Grid.css';
 
-export default function Grid({ grid, hintCells, onDrop, paused, gridSize = 4 }) {
+export default function Grid({ grid, hintCells, onDrop, onDropColumn, paused, gridSize = 4, gameMode = 'divide' }) {
+  const isMultiply = gameMode === 'multiply';
+
   const handleDragOver = (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
   };
 
-  const handleDrop = (e, index) => {
+  const handleDropOnCell = (e, index) => {
     e.preventDefault();
-    if (!paused) {
+    if (paused) return;
+    if (isMultiply) {
+      const col = index % gridSize;
+      if (onDropColumn) onDropColumn(col);
+    } else {
       onDrop(index);
+    }
+  };
+
+  const handleCellClick = (index) => {
+    if (paused) return;
+    if (isMultiply) {
+      const col = index % gridSize;
+      if (onDropColumn) onDropColumn(col);
     }
   };
 
@@ -20,6 +34,29 @@ export default function Grid({ grid, hintCells, onDrop, paused, gridSize = 4 }) 
 
   return (
     <div className="grid-container">
+      {/* Column drop buttons for Multiply mode */}
+      {isMultiply && (
+        <div
+          className="column-indicators"
+          style={{ gridTemplateColumns: `repeat(${gridSize}, 1fr)` }}
+        >
+          {Array.from({ length: gridSize }, (_, col) => {
+            const colFull = grid[col] !== null; /* top cell of column */
+            return (
+              <button
+                key={col}
+                className="column-drop-btn"
+                onClick={() => !paused && onDropColumn && onDropColumn(col)}
+                disabled={paused || colFull}
+                data-col={col}
+              >
+                ▼
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div
         className="grid-board"
         style={{
@@ -34,7 +71,8 @@ export default function Grid({ grid, hintCells, onDrop, paused, gridSize = 4 }) 
               key={index}
               className={`grid-cell ${isHint ? 'grid-cell-hint' : ''} ${cell !== null ? 'grid-cell-filled' : ''}`}
               onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, index)}
+              onDrop={(e) => handleDropOnCell(e, index)}
+              onClick={() => handleCellClick(index)}
               data-index={index}
             >
               <img

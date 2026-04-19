@@ -144,3 +144,47 @@
   color: #fff;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 650px) {
+  .side-panel {
+    flex-direction: row;
+    width: 100%;
+    padding-top: 0;
+  }
+  .keep-section,
+  .trash-section {
+    border-radius: 12px;
+    padding: 6px;
+  }
+  .queue-section {
+    border-radius: 10px;
+    padding: 6px;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  .trash-icon {
+    font-size: 1.1rem;
+  }
+  .trash-count {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .keep-section,
+  .trash-section {
+    padding: 5px;
+  }
+  .section-label {
+    font-size: 0.6rem;
+  }
+  .trash-icon {
+    font-size: 0.95rem;
+  }
+  .trash-count {
+    font-size: 0.6rem;
+  }
+}

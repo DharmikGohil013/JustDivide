@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { resolveMerges, isGameOver, wouldMerge } from '../utils/mergeLogic';
+import { resolveMerges, isGameOver, wouldMerge, getDropRow, resolveMultiplyMerges, isMultiplyGameOver, wouldMergeInColumn } from '../utils/mergeLogic';
 import { generateTile, generateQueue } from '../utils/tileGenerator';
 
 const INITIAL_TRASH = 10;
@@ -211,6 +211,39 @@ export default function useGameState(resumeData, gameMode = 'divide') {
     [grid, activeTile, queue, gameOver, paused, pushUndo, gameMode, gridSize, difficultyTier]
   );
 
+  /* ---- Multiply mode: drop tile into a column ---- */
+  const placeInColumn = useCallback(
+    (col) => {
+      if (activeTile === null || gameOver || paused) return false;
+      const row = getDropRow(grid, col, gridSize);
+      if (row < 0) return false; /* column full */
+
+      pushUndo();
+
+      const newGrid = [...grid];
+      newGrid[row * gridSize + col] = activeTile;
+
+      const { newGrid: resolved, points } = resolveMultiplyMerges(newGrid, gridSize);
+      setGrid(resolved);
+      setScore((s) => s + points);
+
+      const newQueue = [
+        ...queue.slice(1),
+        generateTile(difficultyTier, gameMode),
+      ];
+      setQueue(newQueue);
+
+      setTimeout(() => {
+        if (isMultiplyGameOver(resolved, gridSize)) {
+          setGameOver(true);
+        }
+      }, 300);
+
+      return true;
+    },
+    [grid, activeTile, queue, gameOver, paused, pushUndo, gameMode, gridSize, difficultyTier]
+  );
+
   const storeKeep = useCallback(() => {
     if (activeTile === null || gameOver || paused) return;
     pushUndo();
@@ -269,6 +302,20 @@ export default function useGameState(resumeData, gameMode = 'divide') {
 
   const getHintCells = useCallback(() => {
     if (!hintsEnabled || !activeTile) return [];
+
+    /* Multiply mode: highlight landing cells in mergeable columns */
+    if (gameMode === 'multiply') {
+      const hints = [];
+      for (let col = 0; col < gridSize; col++) {
+        if (wouldMergeInColumn(grid, col, activeTile, gridSize)) {
+          const row = getDropRow(grid, col, gridSize);
+          if (row >= 0) hints.push(row * gridSize + col);
+        }
+      }
+      return hints;
+    }
+
+    /* Divide mode: highlight cells where placement triggers a merge */
     const hints = [];
     const totalCells = gridSize * gridSize;
     for (let i = 0; i < totalCells; i++) {
@@ -289,18 +336,24 @@ export default function useGameState(resumeData, gameMode = 'divide') {
         case 'z': undo(); break;
         case 'r': restart(); break;
         case 'g': toggleHints(); break;
-        default: break;
+        default:
+          /* Multiply mode: number keys 1-9 select columns */
+          if (gameMode === 'multiply' && /^[1-9]$/.test(e.key)) {
+            const col = parseInt(e.key, 10) - 1;
+            if (col < gridSize) placeInColumn(col);
+          }
+          break;
       }
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [undo, restart, toggleHints]);
+  }, [undo, restart, toggleHints, gameMode, gridSize, placeInColumn]);
 
   return {
     grid, queue, keepVal, score, bestScore, level, trashCount,
     timer, gameOver, paused, hintsEnabled, activeTile,
     gridSize, difficultyTier, isBreather,
-    placeTile, storeKeep, discardTrash, undo, restart,
+    placeTile, placeInColumn, storeKeep, discardTrash, undo, restart,
     toggleHints, togglePause, getHintCells,
   };
 }

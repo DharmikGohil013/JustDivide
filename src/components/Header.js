@@ -3,16 +3,12 @@ import './Header.css';
 
 const MODE_TITLES = {
   divide: 'JUST DIVIDE',
-  addition: 'JUST ADD',
-  subtraction: 'JUST SUBTRACT',
   multiply: 'JUST MULTIPLY',
 };
 
 const MODE_SUBTITLES = {
   divide: 'DIVIDE WITH THE NUMBERS TO SOLVE THE ROWS AND COLUMNS.',
-  addition: 'ADD NUMBERS TO REACH THE TARGET SUM!',
-  subtraction: 'SUBTRACT CLOSE NUMBERS TO CLEAR THE GRID!',
-  multiply: 'MULTIPLY NUMBERS UNDER THE CAP TO MERGE!',
+  multiply: 'DROP & MERGE POWERS OF 2!',
 };
 
 function formatTime(seconds) {

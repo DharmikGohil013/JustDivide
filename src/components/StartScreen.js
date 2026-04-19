@@ -4,9 +4,7 @@ import './StartScreen.css';
 
 const MODES = [
   { key: 'divide',      label: '÷', name: 'Divide',   color: '#27ae60', desc: 'Divide numbers to clear the grid!' },
-  { key: 'multiply',    label: '×', name: 'Multiply',  color: '#e67e22', desc: 'Multiply numbers under the cap!' },
-  { key: 'addition',    label: '+', name: 'Add',       color: '#3498db', desc: 'Add numbers to hit the target!' },
-  { key: 'subtraction', label: '−', name: 'Subtract',  color: '#e74c3c', desc: 'Subtract close numbers to merge!' },
+  { key: 'multiply',    label: '×', name: 'Multiply',  color: '#e67e22', desc: 'Drop & merge powers of 2!' },
 ];
 
 export default function StartScreen({ onPlay, onContinue }) {

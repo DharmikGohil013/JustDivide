@@ -22,6 +22,7 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
     gridSize,
     isBreather,
     placeTile,
+    placeInColumn,
     storeKeep,
     discardTrash,
     undo,
@@ -37,8 +38,16 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
   const hintCells = getHintCells();
 
   const handleDrop = useCallback((cellIndex) => {
-    placeTile(cellIndex);
-  }, [placeTile]);
+    if (gameMode === 'multiply') {
+      placeInColumn(cellIndex % gridSize);
+    } else {
+      placeTile(cellIndex);
+    }
+  }, [gameMode, gridSize, placeTile, placeInColumn]);
+
+  const handleDropColumn = useCallback((col) => {
+    placeInColumn(col);
+  }, [placeInColumn]);
 
   const handleDragStartActive = useCallback(() => {
   }, []);
@@ -63,8 +72,25 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
       const rect = cell.getBoundingClientRect();
       if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
         const index = parseInt(cell.dataset.index, 10);
-        placeTile(index);
+        if (gameMode === 'multiply') {
+          placeInColumn(index % gridSize);
+        } else {
+          placeTile(index);
+        }
         break;
+      }
+    }
+
+    /* Also allow drop onto column-drop buttons (multiply mode) */
+    if (gameMode === 'multiply') {
+      const buttons = document.querySelectorAll('.column-drop-btn');
+      for (const btn of buttons) {
+        const rect = btn.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          const col = parseInt(btn.dataset.col, 10);
+          placeInColumn(col);
+          break;
+        }
       }
     }
 
@@ -85,7 +111,7 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
     }
 
     setTouchDrag(null);
-  }, [touchDrag, placeTile, storeKeep, discardTrash]);
+  }, [touchDrag, placeTile, placeInColumn, storeKeep, discardTrash, gameMode, gridSize]);
 
   useEffect(() => {
     if (touchDrag) {
@@ -167,8 +193,10 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
               grid={grid}
               hintCells={hintCells}
               onDrop={handleDrop}
+              onDropColumn={handleDropColumn}
               paused={paused}
               gridSize={gridSize}
+              gameMode={gameMode}
             />
           </div>
 
