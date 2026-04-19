@@ -184,6 +184,9 @@ export default function Game({ resumeData, gameMode, onBackToStart }) {
         </div>
 
         <div className="bottom-controls">
+          <button className="home-btn" onClick={onBackToStart} title="Home">
+            🏠 Home
+          </button>
           <button className="undo-btn" onClick={undo} title="Undo (Z)">
             ↩ Undo
           </button>

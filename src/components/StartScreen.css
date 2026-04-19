@@ -1,11 +1,13 @@
 .start-wrapper {
   position: relative;
   width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .start-bg {
@@ -39,9 +41,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  max-width: 520px;
-  width: 90%;
+  gap: 10px;
+  max-width: 560px;
+  width: 92%;
+  padding: 10px 0 20px;
   animation: startFadeIn 0.8s ease;
 }
 
@@ -292,59 +295,190 @@
 }
 
 @media (max-width: 650px) {
+  .start-wrapper {
+    padding: 12px 0;
+  }
+  .start-content {
+    gap: 8px;
+    width: 95%;
+  }
   .start-cat {
-    width: 180px;
+    width: 140px;
   }
   .start-title {
-    font-size: 2.4rem;
-    letter-spacing: 4px;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
   }
   .start-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
   }
   .start-desc {
     font-size: 0.85rem;
   }
   .mode-grid {
     gap: 10px;
+    max-width: 100%;
+  }
+  .mode-card {
+    padding: 10px 8px 10px;
+    border-radius: 12px;
+    gap: 4px;
   }
   .mode-symbol {
-    width: 42px;
-    height: 42px;
-    font-size: 1.6rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
   }
   .mode-name {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  .mode-desc {
+    font-size: 0.65rem;
   }
   .mode-play-btn {
     font-size: 0.85rem;
     padding: 8px 20px;
   }
+  .mode-continue-btn {
+    font-size: 0.7rem;
+    padding: 5px 14px;
+  }
+  .mode-save-text {
+    font-size: 0.62rem;
+  }
+  .start-keys {
+    gap: 8px;
+  }
+  .start-keys span {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+  }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 420px) {
   .start-cat {
-    width: 140px;
+    width: 110px;
   }
   .start-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+  .start-subtitle {
+    font-size: 0.95rem;
+  }
+  .start-desc {
+    font-size: 0.75rem;
   }
   .mode-grid {
-    grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
   .mode-card {
-    padding: 10px 6px 10px;
+    padding: 8px 6px;
+    gap: 3px;
+    border-width: 2px;
   }
   .mode-symbol {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     font-size: 1.3rem;
   }
   .mode-name {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
   }
   .mode-desc {
+    font-size: 0.6rem;
+    line-height: 1.2;
+  }
+  .mode-play-btn {
+    font-size: 0.75rem;
+    padding: 6px 16px;
+  }
+  .mode-continue-btn {
     font-size: 0.65rem;
+    padding: 4px 12px;
+  }
+}
+
+@media (max-width: 340px) {
+  .start-content {
+    gap: 6px;
+  }
+  .start-cat {
+    width: 90px;
+  }
+  .start-title {
+    font-size: 1.5rem;
+  }
+  .start-subtitle {
+    font-size: 0.85rem;
+  }
+  .mode-grid {
+    gap: 6px;
+  }
+  .mode-card {
+    padding: 6px 4px;
+  }
+  .mode-symbol {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+  }
+  .mode-name {
+    font-size: 0.7rem;
+  }
+  .mode-desc {
+    display: none;
+  }
+  .mode-play-btn {
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
+}
+
+/* Landscape phones */
+@media (max-height: 500px) {
+  .start-wrapper {
+    align-items: flex-start;
+    padding: 8px 0;
+  }
+  .start-cat {
+    width: 80px;
+  }
+  .start-title {
+    font-size: 1.6rem;
+  }
+  .start-subtitle {
+    font-size: 0.85rem;
+    margin: -4px 0 0;
+  }
+  .start-content {
+    gap: 4px;
+  }
+  .mode-grid {
+    gap: 6px;
+  }
+  .mode-card {
+    padding: 6px 4px;
+    gap: 2px;
+  }
+  .mode-symbol {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+  }
+  .mode-desc {
+    display: none;
+  }
+  .mode-name {
+    font-size: 0.75rem;
+  }
+  .mode-play-btn {
+    font-size: 0.7rem;
+    padding: 4px 14px;
+  }
+  .start-keys {
+    margin-top: 2px;
   }
 }

@@ -104,3 +104,40 @@
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); }
 }
+
+@media (max-width: 650px) {
+  .header {
+    padding: 8px 12px;
+  }
+  .header-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    border-width: 2px;
+  }
+  .breather-badge {
+    font-size: 0.7rem;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    padding: 6px 8px;
+  }
+  .header-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  .timer-text {
+    font-size: 0.95rem;
+  }
+  .timer-icon {
+    font-size: 1rem;
+  }
+  .breather-badge {
+    font-size: 0.6rem;
+    padding: 2px 8px;
+  }
+}
