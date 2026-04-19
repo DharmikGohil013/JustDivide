@@ -1,9 +1,15 @@
 import React from 'react';
+import { loadSavedProgress } from '../hooks/useGameState';
 import './StartScreen.css';
 
-export default function StartScreen({ savedData, onPlay, onContinue }) {
-  const hasSave = savedData && savedData.level > 0;
+const MODES = [
+  { key: 'divide',      label: '÷', name: 'Divide',   color: '#27ae60', desc: 'Divide numbers to clear the grid!' },
+  { key: 'multiply',    label: '×', name: 'Multiply',  color: '#e67e22', desc: 'Multiply numbers under the cap!' },
+  { key: 'addition',    label: '+', name: 'Add',       color: '#3498db', desc: 'Add numbers to hit the target!' },
+  { key: 'subtraction', label: '−', name: 'Subtract',  color: '#e74c3c', desc: 'Subtract close numbers to merge!' },
+];
 
+export default function StartScreen({ onPlay, onContinue }) {
   return (
     <div className="start-wrapper">
       <img
@@ -30,33 +36,51 @@ export default function StartScreen({ savedData, onPlay, onContinue }) {
           draggable={false}
         />
 
-        <h1 className="start-title">JUST DIVIDE</h1>
+        <h1 className="start-title">JUST MATH</h1>
         <p className="start-subtitle">Kid Mode</p>
-        <p className="start-desc">
-          Divide with the numbers to solve the rows and columns!
-        </p>
+        <p className="start-desc">Pick a mode and solve the puzzle!</p>
 
-        {hasSave && (
-          <div className="start-save-info">
-            <div className="save-badge">
-              <span className="save-label">Last Progress</span>
-              <span className="save-detail">Level {savedData.level} &bull; Score {savedData.score} &bull; Best {savedData.bestScore}</span>
-            </div>
-            <button className="start-btn continue-btn" onClick={onContinue}>
-              ▶ Continue Level {savedData.level}
-            </button>
-          </div>
-        )}
-
-        <button className="start-btn play-btn" onClick={onPlay}>
-          {hasSave ? '🔄 New Game' : '▶ PLAY'}
-        </button>
+        <div className="mode-grid">
+          {MODES.map((mode) => {
+            const saved = loadSavedProgress(mode.key);
+            const hasSave = saved && saved.level > 0;
+            return (
+              <div key={mode.key} className="mode-card" style={{ borderColor: mode.color }}>
+                <div className="mode-symbol" style={{ background: mode.color }}>
+                  {mode.label}
+                </div>
+                <span className="mode-name">{mode.name}</span>
+                <p className="mode-desc">{mode.desc}</p>
+                {hasSave && (
+                  <div className="mode-save-info">
+                    <span className="mode-save-text">
+                      Lvl {saved.level} &bull; {saved.score}pts
+                    </span>
+                    <button
+                      className="mode-btn mode-continue-btn"
+                      style={{ background: mode.color }}
+                      onClick={() => onContinue(mode.key)}
+                    >
+                      Continue
+                    </button>
+                  </div>
+                )}
+                <button
+                  className="mode-btn mode-play-btn"
+                  style={{ background: mode.color }}
+                  onClick={() => onPlay(mode.key)}
+                >
+                  {hasSave ? 'New Game' : 'PLAY'}
+                </button>
+              </div>
+            );
+          })}
+        </div>
 
         <div className="start-keys">
           <span><b>Z</b> Undo</span>
           <span><b>R</b> Restart</span>
           <span><b>G</b> Hints</span>
-          <span><b>1-3</b> Difficulty</span>
         </div>
       </div>
     </div>

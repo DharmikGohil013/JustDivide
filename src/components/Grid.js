@@ -2,7 +2,7 @@ import React from 'react';
 import Tile from './Tile';
 import './Grid.css';
 
-export default function Grid({ grid, hintCells, onDrop, paused }) {
+export default function Grid({ grid, hintCells, onDrop, paused, gridSize = 4 }) {
   const handleDragOver = (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
@@ -15,10 +15,19 @@ export default function Grid({ grid, hintCells, onDrop, paused }) {
     }
   };
 
+  const totalCells = gridSize * gridSize;
+  const displayGrid = grid.slice(0, totalCells);
+
   return (
     <div className="grid-container">
-      <div className="grid-board">
-        {grid.map((cell, index) => {
+      <div
+        className="grid-board"
+        style={{
+          gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+          gridTemplateRows: `repeat(${gridSize}, 1fr)`,
+        }}
+      >
+        {displayGrid.map((cell, index) => {
           const isHint = hintCells.includes(index);
           return (
             <div

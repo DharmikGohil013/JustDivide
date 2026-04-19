@@ -85,3 +85,22 @@
   font-weight: 900;
   font-family: 'Fredoka One', sans-serif;
 }
+
+.breather-badge {
+  display: inline-block;
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.85rem;
+  color: #fff;
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+  padding: 4px 14px;
+  border-radius: 14px;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+  box-shadow: 0 2px 8px rgba(243, 156, 18, 0.4);
+  animation: breatherPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes breatherPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}

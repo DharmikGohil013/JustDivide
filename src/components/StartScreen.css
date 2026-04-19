@@ -186,6 +186,111 @@
   margin-right: 3px;
 }
 
+/* ---- Mode-selection grid ---- */
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 6px;
+}
+
+.mode-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  border: 3px solid #ccc;
+  padding: 14px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.mode-symbol {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.mode-name {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.15rem;
+  color: #2d2d2d;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mode-desc {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.72rem;
+  color: #888;
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+}
+
+.mode-save-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.mode-save-text {
+  font-family: 'Fredoka One', sans-serif;
+  font-size: 0.72rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+.mode-btn {
+  font-family: 'Fredoka One', 'Comic Sans MS', cursive, sans-serif;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.mode-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.25);
+}
+
+.mode-play-btn {
+  font-size: 1rem;
+  padding: 10px 28px;
+  margin-top: 2px;
+}
+
+.mode-continue-btn {
+  font-size: 0.8rem;
+  padding: 6px 18px;
+}
+
 @media (max-width: 650px) {
   .start-cat {
     width: 180px;
@@ -200,13 +305,20 @@
   .start-desc {
     font-size: 0.85rem;
   }
-  .start-btn {
-    font-size: 1.2rem;
-    padding: 14px 44px;
+  .mode-grid {
+    gap: 10px;
   }
-  .continue-btn {
-    font-size: 1rem;
-    padding: 12px 30px;
+  .mode-symbol {
+    width: 42px;
+    height: 42px;
+    font-size: 1.6rem;
+  }
+  .mode-name {
+    font-size: 0.95rem;
+  }
+  .mode-play-btn {
+    font-size: 0.85rem;
+    padding: 8px 20px;
   }
 }
 
@@ -216,5 +328,23 @@
   }
   .start-title {
     font-size: 2rem;
+  }
+  .mode-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .mode-card {
+    padding: 10px 6px 10px;
+  }
+  .mode-symbol {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+  }
+  .mode-name {
+    font-size: 0.8rem;
+  }
+  .mode-desc {
+    font-size: 0.65rem;
   }
 }

@@ -6,7 +6,7 @@ import SidePanel from './SidePanel';
 import GameOver from './GameOver';
 import './Game.css';
 
-export default function Game({ resumeData, onBackToStart }) {
+export default function Game({ resumeData, gameMode, onBackToStart }) {
   const {
     grid,
     queue,
@@ -19,6 +19,8 @@ export default function Game({ resumeData, onBackToStart }) {
     gameOver,
     paused,
     hintsEnabled,
+    gridSize,
+    isBreather,
     placeTile,
     storeKeep,
     discardTrash,
@@ -27,7 +29,7 @@ export default function Game({ resumeData, onBackToStart }) {
     toggleHints,
     togglePause,
     getHintCells,
-  } = useGameState(resumeData);
+  } = useGameState(resumeData, gameMode);
 
   const [touchDrag, setTouchDrag] = useState(null);
   const gameAreaRef = useRef(null);
@@ -126,6 +128,8 @@ export default function Game({ resumeData, onBackToStart }) {
           paused={paused}
           onPause={togglePause}
           onHelp={toggleHints}
+          gameMode={gameMode}
+          isBreather={isBreather}
         />
 
         <div className="game-main">
@@ -164,6 +168,7 @@ export default function Game({ resumeData, onBackToStart }) {
               hintCells={hintCells}
               onDrop={handleDrop}
               paused={paused}
+              gridSize={gridSize}
             />
           </div>
 
